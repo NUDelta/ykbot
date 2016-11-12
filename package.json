@@ -1,0 +1,13 @@
+{
+  "name": "ykbot",
+  "version": "1.0.0",
+  "description": "Who needs Yongsung when you have ykbot?",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "beepboop-botkit": "^1.4.0",
+    "botkit": "~0.4.1"
+  }
+}
