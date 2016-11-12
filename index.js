@@ -3,22 +3,34 @@
 var Botkit = require('botkit');
 var sprint_keys = require('./sprint_keys.js').module;
 
+var token = process.env.SLACK_TOKEN;
+
 if (!process.env.token) {
   console.log('Error: Specify token in environment');
   process.exit(1);
 }
 
 var controller = Botkit.slackbot({
- debug: false
+    retry: Infinity,
+    debug: false
 });
 
-controller.spawn({
-  token: process.env.SLACK_TOKEN
-}).startRTM(function(err) {
-  if (err) {
-    throw new Error(err);
-  }
-});
+if (token) {
+  console.log('Starting in single-team mode')
+  controller.spawn({
+    token: token
+  }).startRTM(function (err, bot, payload) {
+    if (err) {
+      throw new Error(err)
+    }
+
+    console.log('Connected to Slack RTM')
+  })
+// Otherwise assume multi-team mode - setup beep boop resourcer connection
+} else {
+  console.log('Starting in Beep Boop multi-team mode')
+  require('beepboop-botkit').start(controller, { debug: true })
+}
 
 controller.hears(['hello','hi'],['direct_message','direct_mention','mention'],function(bot,message) {
     bot.api.users.info({user:message.user}, (error, response) => {
