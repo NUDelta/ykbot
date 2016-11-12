@@ -49,6 +49,78 @@ controller.hears(['hello','hi'],['direct_message','direct_mention','mention'],fu
     })
 });
 
+controller.hears(['roman', 'rome', 'holiday'],['direct_message','direct_mention','mention'],function(bot,message) {
+    bot.api.users.info({user:message.user}, (error, response) => {
+        let user = response.user;
+
+        if (user.name == "npr" || user.name == "yk") {
+            let text = "I have to leave you now, Yongsung. I'm going to that corner there and turn. You must stay in the car and drive away. Promise not to watch me go beyond the corner, Yongsung. Just drive away and leave me as I leave you."
+
+            bot.reply(message,{
+                text: text,
+                username: "Audrey Hepburn",
+                icon_emoji: ":audrey:",
+            });
+        }
+        else {
+            bot.reply(message, {
+                text: "Woof!",
+                username: "Stella",
+                icon_emoji: ":stella:",
+            });
+        }
+
+    })
+});
+
+controller.hears(['fair', 'lady'],['direct_message','direct_mention','mention'],function(bot,message) {
+    bot.api.users.info({user:message.user}, (error, response) => {
+        let user = response.user;
+
+        if (user.name == "npr" || user.name == "yk") {
+            let text = "Just you wait, Yongsung Kim, just you wait. You'll be sorry, but your tears will be too late!"
+
+            bot.reply(message,{
+                text: text,
+                username: "Audrey Hepburn",
+                icon_emoji: ":audrey:",
+            });
+        }
+        else {
+            bot.reply(message, {
+                text: "Woof!",
+                username: "Stella",
+                icon_emoji: ":stella:",
+            });
+        }
+
+    })
+});
+
+controller.hears(['breakfast', 'tiffany'],['direct_message','direct_mention','mention'],function(bot,message) {
+    bot.api.users.info({user:message.user}, (error, response) => {
+        let user = response.user;
+
+        if (user.name == "npr" || user.name == "yk") {
+            let text = "I mean any gentleman with the slightest chic, Yongsung, will give a girl a fifty dollar bill for the powder room."
+
+            bot.reply(message,{
+                text: text,
+                username: "Audrey Hepburn",
+                icon_emoji: ":audrey:",
+            });
+        }
+        else {
+            bot.reply(message, {
+                text: "Woof!",
+                username: "Stella",
+                icon_emoji: ":stella:",
+            });
+        }
+
+    })
+});
+
 var not_names = "^sprint$";
 controller.hears([not_names], ['direct_message','direct_mention','mention'], function(bot, message) {
     bot.api.users.info({user:message.user}, (error, response) => {
