@@ -5,11 +5,6 @@ var sprint_keys = require('./sprint_keys.js').module;
 
 var token = process.env.SLACK_TOKEN;
 
-if (!process.env.token) {
-  console.log('Error: Specify token in environment');
-  process.exit(1);
-}
-
 var controller = Botkit.slackbot({
     retry: Infinity,
     debug: false
