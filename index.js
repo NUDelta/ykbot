@@ -167,6 +167,7 @@ controller.hears(['help'], ['direct_message', 'direct_mention', 'mention'], func
         }
         else {
             let text = "Hi! Tag me and type `sprint`, and I can summon your sprint for you! Type `sprint <username>`, where username is someone's Slack username, and I'll get their sprint instead!"
+            bot.reply(message, text);
         }
     });
 });
