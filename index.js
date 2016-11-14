@@ -153,50 +153,20 @@ controller.hears([names], ['direct_message','direct_mention','mention'], functio
     }
 });
 
-controller.hears(['attach'],['direct_message','direct_mention'],function(bot,message) {
+controller.hears(['help'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+    bot.api.users.info({user:message.user}, (error, response) => {
+        let user = response.user;
 
-  var attachments = [];
-  var attachment = {
-    title: 'This is an attachment',
-    color: '#FFCC99',
-    fields: [],
-  };
-
-  attachment.fields.push({
-    label: 'Field',
-    value: 'A longish value',
-    short: false,
-  });
-
-  attachment.fields.push({
-    label: 'Field',
-    value: 'Value',
-    short: true,
-  });
-
-  attachment.fields.push({
-    label: 'Field',
-    value: 'Value',
-    short: true,
-  });
-
-  attachments.push(attachment);
-
-  bot.reply(message,{
-    text: 'See below...',
-    attachments: attachments,
-  },function(err,resp) {
-    console.log(err,resp);
-  });
-});
-
-controller.hears(['dm me'],['direct_message','direct_mention'],function(bot,message) {
-  bot.startConversation(message,function(err,convo) {
-    convo.say('Heard ya');
-  });
-
-  bot.startPrivateConversation(message,function(err,dm) {
-    dm.say('Private reply!');
-  });
-
+        if (user.name == "yk") {
+            let text = "Hi Yongsung ;) ask me about my movies!"
+            bot.reply(message,{
+                text: text,
+                username: "Audrey Hepburn",
+                icon_emoji: ":audrey:",
+            });
+        }
+        else {
+            let text = "Hi! Tag me and type `sprint`, and I can summon your sprint for you! Type `sprint <username>`, where username is someone's Slack username, and I'll get their sprint instead!"
+        }
+    });
 });
