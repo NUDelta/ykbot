@@ -129,7 +129,10 @@ controller.hears([not_names], ['direct_message','direct_mention','mention'], fun
         if (user.name in sprint_keys) {
             let urls = sprint_keys[user.name];
             for (var sprint in urls) {
-                bot.reply(message, "Your sprint(s), master: http://drive.google.com/open?id=" + urls[sprint]);
+                bot.reply(message, {
+                    text: "Your sprint(s), master: http://drive.google.com/open?id=" + urls[sprint]),
+                    icon_emoji: ":stella:"
+                }
             }
         }
         else {
@@ -145,7 +148,10 @@ controller.hears([names], ['direct_message','direct_mention','mention'], functio
     if (target in sprint_keys) {
         let urls = sprint_keys[target];
         for (var sprint in urls) {
-            bot.reply(message, "Your sprint(s), master: http://drive.google.com/open?id=" + urls[sprint]);
+            bot.reply(message, {
+                text: "Your sprint(s), master: http://drive.google.com/open?id=" + urls[sprint]),
+                icon_emoji: ":stella:"
+            }
         }
     }
     else {
@@ -168,6 +174,37 @@ controller.hears(['help'], ['direct_message', 'direct_mention', 'mention'], func
         else {
             let text = "Hi! Ask me `sprint`, and I can summon your sprint for you! Ask for `sprint <username>`, where `username` is someone's Slack username, and I'll get their sprint instead!"
             bot.reply(message, text);
+        }
+    });
+});
+
+controller.hears(['better', 'sasha', 'yongsung'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
+    bot.api.users.info({user:message.user}, (error, response) => {
+        let user = response.user;
+
+        if (user.name == "yk") {
+            let text = "Sasha is so much cooler than you, Yongsung."
+            bot.reply(message,{
+                text: text,
+                username: "Audrey Hepburn",
+                icon_emoji: ":audrey:",
+            });
+        }
+        else if (user.name == "npr") {
+            let text = "Sasha, let's go on a Roman Holiday - without Yongsung."
+            bot.reply(message,{
+                text: text,
+                username: "Audrey Hepburn",
+                icon_emoji: ":audrey:",
+            });
+        }
+        else {
+            let text = "Woof woof! [I love everyone the same!]"
+            bot.reply(message,{
+                text: text,
+                username: "Stella",
+                icon_emoji: ":stella:",
+            });
         }
     });
 });
