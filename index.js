@@ -130,7 +130,7 @@ controller.hears([not_names], ['direct_message','direct_mention','mention'], fun
             let urls = sprint_keys[user.name];
             for (var sprint in urls) {
                 bot.reply(message, {
-                    text: "Your sprint(s), master: http://drive.google.com/open?id=" + urls[sprint]),
+                    text: "Your sprint(s): http://drive.google.com/open?id=" + urls[sprint]),
                     icon_emoji: ":stella:"
                 }
             }
@@ -149,7 +149,7 @@ controller.hears([names], ['direct_message','direct_mention','mention'], functio
         let urls = sprint_keys[target];
         for (var sprint in urls) {
             bot.reply(message, {
-                text: "Your sprint(s), master: http://drive.google.com/open?id=" + urls[sprint]),
+                text: "Your sprint(s): http://drive.google.com/open?id=" + urls[sprint]),
                 icon_emoji: ":stella:"
             }
         }
