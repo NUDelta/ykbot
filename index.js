@@ -161,6 +161,14 @@ controller.hears([names], ['direct_message','direct_mention','mention'], functio
     }
 });
 
+controller.hears(['hangout', 'hangouts'], ['direct_message','direct_mention','mention'], function(bot, message) {
+    bot.reply(message, {
+        text: "Join us: https://hangouts.google.com/call/wos24baxdbdejkkss4jl6nykeie",
+        username: "Stella",
+        icon_emoji: ":stella:"
+    });
+});
+
 controller.hears(['help'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
     bot.api.users.info({user:message.user}, (error, response) => {
         let user = response.user;
