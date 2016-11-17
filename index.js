@@ -21,10 +21,10 @@ if (token) {
 
     console.log('Connected to Slack RTM')
   })
-// Otherwise assume multi-team mode - setup beep boop resourcer connection
-} else {
-  console.log('Starting in Beep Boop multi-team mode')
-  require('beepboop-botkit').start(controller, { debug: true })
+}
+else {
+    console.log('No token! Exiting...');
+    process.exit(1);
 }
 
 controller.hears(['hello','hi'],['direct_message','direct_mention','mention'],function(bot,message) {
@@ -130,9 +130,10 @@ controller.hears([not_names], ['direct_message','direct_mention','mention'], fun
             let urls = sprint_keys[user.name];
             for (var sprint in urls) {
                 bot.reply(message, {
-                    text: "Your sprint(s): http://drive.google.com/open?id=" + urls[sprint]),
+                    text: "Your sprint(s): http://drive.google.com/open?id=" + urls[sprint],
+                    username: "Stella",
                     icon_emoji: ":stella:"
-                }
+                })
             }
         }
         else {
@@ -149,9 +150,10 @@ controller.hears([names], ['direct_message','direct_mention','mention'], functio
         let urls = sprint_keys[target];
         for (var sprint in urls) {
             bot.reply(message, {
-                text: "Your sprint(s): http://drive.google.com/open?id=" + urls[sprint]),
+                text: "Your sprint(s): http://drive.google.com/open?id=" + urls[sprint],
+                username: "Stella",
                 icon_emoji: ":stella:"
-            }
+            })
         }
     }
     else {
