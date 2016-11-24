@@ -49,7 +49,8 @@ controller.hears(['hello','hi'],['direct_message','direct_mention','mention'],fu
     })
 });
 
-controller.hears(['roman', 'rome', 'holiday'],['direct_message','direct_mention','mention'],function(bot,message) {
+var pattern = '(?=.*holiday)(?=.*roman|rome).+'
+controller.hears([pattern],['direct_message','direct_mention','mention'],function(bot,message) {
     bot.api.users.info({user:message.user}, (error, response) => {
         let user = response.user;
 
@@ -73,7 +74,8 @@ controller.hears(['roman', 'rome', 'holiday'],['direct_message','direct_mention'
     })
 });
 
-controller.hears(['fair', 'lady'],['direct_message','direct_mention','mention'],function(bot,message) {
+var pattern = '(?=.*fair)(?=.*lady).+'
+controller.hears([pattern],['direct_message','direct_mention','mention'],function(bot,message) {
     bot.api.users.info({user:message.user}, (error, response) => {
         let user = response.user;
 
@@ -97,7 +99,8 @@ controller.hears(['fair', 'lady'],['direct_message','direct_mention','mention'],
     })
 });
 
-controller.hears(['breakfast', 'tiffany'],['direct_message','direct_mention','mention'],function(bot,message) {
+var pattern = '(?=.*tiffany)(?=.*breakfast).+'
+controller.hears([pattern],['direct_message','direct_mention','mention'],function(bot,message) {
     bot.api.users.info({user:message.user}, (error, response) => {
         let user = response.user;
 
@@ -188,33 +191,12 @@ controller.hears(['help'], ['direct_message', 'direct_mention', 'mention'], func
     });
 });
 
-controller.hears(['better', 'sasha', 'yongsung'], ['direct_message', 'direct_mention', 'mention'], function(bot, message) {
-    bot.api.users.info({user:message.user}, (error, response) => {
-        let user = response.user;
-
-        if (user.name == "yk") {
-            let text = "Sasha is so much cooler than you, Yongsung."
-            bot.reply(message,{
-                text: text,
-                username: "Audrey Hepburn",
-                icon_emoji: ":audrey:",
-            });
-        }
-        else if (user.name == "npr") {
-            let text = "Sasha, let's go on a Roman Holiday - without Yongsung."
-            bot.reply(message,{
-                text: text,
-                username: "Audrey Hepburn",
-                icon_emoji: ":audrey:",
-            });
-        }
-        else {
-            let text = "Woof woof! [I love everyone the same!]"
-            bot.reply(message,{
-                text: text,
-                username: "Stella",
-                icon_emoji: ":stella:",
-            });
-        }
-    });
+var pattern = '(?=.*happy)(?=.*birthday)(?=.*yongsung).+'
+controller.hears([pattern], ['ambient'], function(bot, message) {
+  let text = 'Happy birthday to my biggest fan <3'
+  bot.reply(message, {
+      text: text,
+      username: "Audrey Hepburn",
+      icon_emoji: ":audrey:",
+  });
 });
